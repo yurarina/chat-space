@@ -2,13 +2,13 @@
   .header
     .header__box
       .header__box__name
-        ユーザー名
+        = current_user.name
       .header__box__icon
         .header__box__icon__icon1
           =link_to '#', class: "icon1" do
             =icon('fas', 'edit')
         .header__box__icon__icon2
-          =link_to '#', class: "icon2" do
+          =link_to edit_user_path(current_user), class: "icon2" do
             =icon('fas', 'cog')
 
 
