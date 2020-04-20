@@ -2,32 +2,27 @@
   .header
     .header__leftbox
       .header__leftbox__title
-        グループ名
+        = @group.name
       .header__leftbox__members
         Member:
         .header_leftbox_members__member
-          メンバー名
+          - @group.users.each do |user|
+            = user.name
 
     .header__rightbox
       .header__rightbox__btn
-        =link_to "Edit", "#", class: "edit"
+        =link_to("Edit", edit_group_path(@group))
 
   .messages
-    .message
-      .uppermessage
-        .uppermessage__name
-          メンバー名
-        .uppermessage__date
-          2020/04/05(sun) 11:43
-      .lowermessage  
-        .lowermessage__text
-          メッセージ
+    = render @messages
 
   .form
-    %form
-      .input-box
-        %input{type: "text", class: "input-box__text", placeholder: "type a message"}
-        %label{class: "input-box__image"}
-          =icon('fas', 'image')
-          %input{type: "file", class: "input-box__image__file"}
-      %input{type: "submit", class: "submit-btn"}
+    = form_for [@group, @message] do |f|
+      %form
+        .input-box
+          = f.text_field :content, class: "input-box__text", placeholder: "type a message"
+          .input-box__image
+            = f.label :image, class: "input-box__image" do
+              =icon('fas', 'image', class: "input-boz__image") 
+              = f.file_field :image, class: "input-box__image__file" 
+        = f.submit 'Send', class: "submit-btn" 
