@@ -70,6 +70,10 @@ gem 'jquery-rails'
 # gem 'factory_bot_rails'
 # gem 'capybara'
 
+group :production do
+  gem 'unicorn', '5.4.1'
+end
+
 group :test do
   gem 'faker', "~> 2.8"
   gem 'rspec-rails', '~> 3.5'
@@ -77,3 +81,4 @@ group :test do
   gem 'factory_bot_rails'
   gem 'capybara'
 end
+
